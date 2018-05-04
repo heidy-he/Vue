@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>TodoList </title>
+	   <!--要实现备忘录的功能，先写界面，再写逻辑层；
+	   1.界面：a输入框input标签，b提交按钮button，并且他们要在一个div盒子里，不然无法连接事件操作；c列表标签ul li
+	   2.业务逻辑：a:用v-value实现双向绑定，在视图中输入数据，使得后台在业务逻辑层面也会改变数据所存储的值；只有能存储值，才能够让他们显示出来啊；
+	   b:用数组作为备忘录中每个事件的容器，最开始没有事件，该数组为空；
+	   c:往数组里面添加数据，用this.list.push语句实现添加内容到备忘录中，这个过程是把input标签里面的内容压进数组；
+	   d:每次输入内容后，都要实现input框的清空，不然每次输完之后都要清空再输入，很麻烦，实现的过程只要再次把inputvalue定义成空值
+	   总结：这里的list 就是一个大染缸，我要用桶子把水倒进去，同时，还要每次倒完染料之后把桶子洗干净，但首先，我们要检查桶子是佛能装水并倒进染缸，也就是双向数据绑定-->
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="root">
+		<div>
+			<input v-model="inputvalue"/>
+		<button @click="handleclick">提交</button>
+		</div>
+			<ul>
+				<li v-for="(item,index) of list" :key="index">{{item}}</li>
+				
+			</ul>
+			
+		</div>
+		<script >
+			new Vue({
+				el:"#root",
+				data: {
+					inputvalue:'',
+					list:[]
+					
+				},
+				methods: {
+					//这个东西真的好难写，我不怎么会啊！
+					handleclick: function(){
+						this.list.push(this.inputvalue);
+						this.inputvalue = []
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

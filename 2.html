@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>计算属性与监听器</title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="root">
+		性:<input v-model="firstname"/>
+	        名:<input v-model="lastname"/>
+	      <div>{{fullname}}</div>
+	      <div>{{count}}</div>
+
+		</div>
+		<script>
+			new Vue({
+				el:"#root",
+				data:{
+					firstname:'',
+					lastname:'',
+					count: 0
+				},
+				//每次写完一个语句或者一个函数体，只要不是最后一个，都要写句号，记住了嘛
+				computed:{
+					//computed指的是一个属性由另一个属性计算而来，好处是依赖的属性不发生变化，会按照以前的缓存进行展示；
+					fullname: function(){
+						return this.firstname+' '+this.lastname
+					}    	
+			   },
+//			   这个地方花括号一定要看清,不能乱在花括号后面加逗号,一定要在函数结束后打逗号,不然会很乱,也可以找到}),在})前面的一个花括号后面打逗号
+			   watch:{
+//			    	侦听器,会检测某一个数据是否发生变化,这时候我们可以在侦听器中做自己的业务逻辑;
+			    	fullname: function(){
+			    		this.count ++
+			   }
+			    }
+				
+			})
+		</script>
+	</body>
+</html>

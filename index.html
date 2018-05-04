@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>vue入门</title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<!--挂载点、模板、实例之间的关系；-->
+		<div id="root">
+			<div @click="handleClick">{{content}}</div></div>
+			<!--绑定一个click事件，其中v-on:可以改写成@-->
+			<!--在挂载点内部的内容都叫做模板内容-->
+		<!--用两个花括号括起来的内容叫做插值表达式-->
+		<script>
+			new Vue({
+			//创建好实例，在实例中创建挂载点和模板，Vue会自动结合模板和数据里面的内容生成要展示的内容，然后把内容放在挂载点之中；
+				el:"#root",
+				//通过el 和上面元素的绑定，下面的msg的数据就会自动显示到div的标签里面，el后面的ID属性（root）是一个挂载点；
+//				template:'<h1>hello{{msg}}</h1></div>',
+//				模板也可以写在实例中的template属性里面,
+				data:{
+					content:"hello world!"
+					//注意，这个地方不要写分号；
+//					number:123
+				},
+				methods:{
+					handleClick: function() {
+						//这个地方handle后面的冒号一定不可以忘记
+						this.content="hehuan"
+					}
+					
+				}
+			})
+		</script>
+	</body>
+</html>

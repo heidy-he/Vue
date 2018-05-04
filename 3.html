@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>v-if， v-for，v-show指令，它们都是模板指令</title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="root">
+		<div v-show="show">hello world</div>
+		<!--这个地方也可以用v-if来代替v-show，两者的区别是前者直接把数据项从dom中直接删除，而后者是把数据项隐藏了，两者中v-show使用更多-->
+		<button @click="handleclick">toggle</button>   
+		<!--这个电机事件一定要写在root这个div里面， 不然无法对show 挂载器进行控制，因为他们不是一家人，就会不认识对方；-->
+		<ul>
+		<li v-for="(item,index) of list"  :key="index">{{item}}</li></ul>
+		<!--这个语句中  item of list是固定的，不能改变，不然的话，不会显示list里面的内容-->
+		<!--这条语句中加入key 是为了可以让数组中相同的元素显示出来，这时候是要加入索引的，因为数值相同，但位置是一定不同的，前面的那条语句也要改变-->
+		</div>
+
+		<script>
+			new Vue({
+				el:"#root",
+				data: {
+					show:true,
+				    list:[1,1,3]
+				},
+				methods: {
+					handleclick: function() {
+						this.show = !this.show;
+					}
+					
+				}
+			})
+		</script>
+	</body>
+</html>

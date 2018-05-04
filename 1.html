@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>属性绑定和双向数据绑定</title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="root">
+		<div :title="title">helo world</div>
+		<!--出现提示语,这是一个属性绑定，等号后面的内容不再是属性，而是一个JS表达式其中v-bind：和：的作用是一样的，所以可以直接写：-->
+			<input v-model="content"/>
+			<!--通过v-model这个语句，实现页面改变数据的内容，刷新之后又会恢复content之前定义的内容，content的内容改变之后页面的内容也会改变，这就是双向绑定-->
+			<!--这个标签可以改变内容，也可以显示内容-->
+			<div>{{content}}</div>
+			<!--单项绑定的意思是数据决定页面的显示，但是页面无法决定数据的显示-->
+		</div>
+			<script>
+				new Vue({
+					el:"#root",
+					data:{
+						title:"this is a title world",
+						content:"this is a content"
+					}
+				})
+			</script>
+	</body>
+</html>
